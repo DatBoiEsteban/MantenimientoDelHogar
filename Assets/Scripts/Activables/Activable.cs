@@ -11,9 +11,12 @@ public class Activable : MonoBehaviour
     {
         if (isDoor == true)
         {
+            
             other.gameObject.GetComponent<ActivableDoor>().activateDoor();
-        } else if (isSlidingDoor == true)
+        }
+        if (isSlidingDoor == true)
         {
+            
             other.gameObject.GetComponent<SlidingDoor>().activateDoor();
         }
     }

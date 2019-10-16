@@ -24,16 +24,17 @@ public class SlidingDoor : MonoBehaviour
                 for (int i = 0; i <= movementAmount; i++)
                 {
                     this.transform.position += new Vector3(moveDirection.x * moveAmount, moveDirection.y * moveAmount, moveDirection.z * moveAmount);
-                    yield return new WaitForSeconds(.001f);
+                    yield return new WaitForSeconds(1f);
                 }
-                
+                isOpen = false;
             } else
             {
                 for (int i = movementAmount; i >= 0; i--)
                 {
                     this.transform.position -= new Vector3(moveDirection.x * moveAmount, moveDirection.y * moveAmount, moveDirection.z * moveAmount);
-                    yield return new WaitForSeconds(.001f);
+                    yield return new WaitForSeconds(1f);
                 }
+                isOpen = true;
             }
             
         } else
@@ -43,17 +44,18 @@ public class SlidingDoor : MonoBehaviour
                 for (int i = movementAmount; i >= 0; i--)//int i = movementAmount; i >= 0; i--
                 {
                     this.transform.position += new Vector3(moveDirection.x * moveAmount, moveDirection.y * moveAmount, moveDirection.z * moveAmount);
-                    yield return new WaitForSeconds(.001f);
+                    yield return new WaitForSeconds(1f);
                 }
-
+                isOpen = false;
             }
             else
             {
                 for (int i = 0; i <= movementAmount; i++)
                 {
                     this.transform.position -= new Vector3(moveDirection.x * moveAmount, moveDirection.y * moveAmount, moveDirection.z * moveAmount);
-                    yield return new WaitForSeconds(.001f);
+                    yield return new WaitForSeconds(1f);
                 }
+                isOpen = true;
             }
         }
     }

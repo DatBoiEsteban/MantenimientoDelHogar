@@ -41,6 +41,7 @@ public class PickUp : MonoBehaviour
     {
         pickable = null;
         Objective = null;
+        Activable = null;
     }
 
     private void Update()
