@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActivableDoor : MonoBehaviour
 {
     public int rotationDegrees;
-    private int rotateTo;
+    private int currentRotation;
 
     public GameObject leftDoor;
     public GameObject RightDoor;
@@ -13,34 +13,35 @@ public class ActivableDoor : MonoBehaviour
     public void activateDoor()
     {
         StopAllCoroutines();
-        rotateTo = rotationDegrees;
         StartCoroutine("OpenDoors");
+        currentRotation = GetComponentInParent<DoorManager>().currentRotation;
     }
 
     IEnumerator OpenDoors()
     {
         if (GetComponentInParent<DoorManager>().isOpen)
         {
-            Debug.Log(rotateTo);
-            for (int i = rotateTo; i > 0; i--)
+            GetComponentInParent<DoorManager>().isOpen = false;
+            for (int i = currentRotation; i >= 0; i--)
             {
-                Debug.Log(i);
                 leftDoor.transform.Rotate(new Vector3(0, 1, 0));
                 RightDoor.transform.Rotate(new Vector3(0, -1, 0));
+                currentRotation -= 1;
                 yield return new WaitForSeconds(.001f);
             }
-            GetComponentInParent<DoorManager>().isOpen = false;
+            GetComponentInParent<DoorManager>().currentRotation = currentRotation;
         }
         else if (!GetComponentInParent<DoorManager>().isOpen)
         {
-            for (int i = 0; i < rotateTo; i++)
+            GetComponentInParent<DoorManager>().isOpen = true;
+            for (int i = currentRotation; i <= rotationDegrees; i++)
             {
-                Debug.Log(i);
                 leftDoor.transform.Rotate(new Vector3(0, -1, 0));
                 RightDoor.transform.Rotate(new Vector3(0, 1, 0));
+                currentRotation += 1;
                 yield return new WaitForSeconds(.001f);
             }
-            GetComponentInParent<DoorManager>().isOpen = true;
+            GetComponentInParent<DoorManager>().currentRotation = currentRotation;
         }
         
     }
