@@ -7,10 +7,10 @@ public class PickUp : MonoBehaviour
     public float range;
     public bool hasObject;
     private Transform prevParent;
-    private Collider pickable;
+    public Collider pickable;
     private Collider picked;
-    private Collider Objective;
-    private Collider Activable;
+    public Collider Objective;
+    public Collider Activable;
 
     private void Start()
     {
