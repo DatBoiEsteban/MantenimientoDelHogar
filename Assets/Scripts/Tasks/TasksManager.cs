@@ -8,7 +8,7 @@ public class TasksManager : MonoBehaviour
 
     public List<GameObject> Objectives;
     public List<string> tasks;
-    public List<GameObject> toggles = new List<GameObject>();
+    private List<GameObject> toggles = new List<GameObject>();
     private int index = 0;
     public GameObject panel;
     public GameObject prefab;
@@ -16,7 +16,11 @@ public class TasksManager : MonoBehaviour
     private void Start()
     {
         Objectives[index].GetComponent<placeable>().canPlace = true;
-
+        Objectives.ForEach(delegate (GameObject objective)
+        {
+            objective.SetActive(false);
+        });
+        setCurrentActive();
         CreateTasks();
     }
 
@@ -24,12 +28,16 @@ public class TasksManager : MonoBehaviour
     {
         if (index < Objectives.Count)
         {
-            Objectives[index].GetComponent<placeable>().canPlace = true;
             if (Objectives[index].layer != 10)
             {
                 toggles[index].GetComponent<Toggle>().isOn = true;
                 Objectives[index].GetComponent<placeable>().canPlace = false;
-                index += 1;                    
+                index += 1;
+                if (index < Objectives.Count)
+                {
+                    setCurrentActive();
+                }
+                
             }
         }
         else
@@ -43,9 +51,15 @@ public class TasksManager : MonoBehaviour
         for (int i = 0; i < tasks.Count; i++)
         {
             GameObject a = Instantiate(prefab, panel.transform);
-            //a.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+            Vector2 ab = a.GetComponent<RectTransform>().anchoredPosition;
+            a.GetComponent<RectTransform>().anchoredPosition = new Vector2(ab.x, -15 - 20 * i);
             a.GetComponentInChildren<Text>().text = tasks[i];
             toggles.Add(a);
         }
+    }
+
+    private void setCurrentActive()
+    {
+        Objectives[index].SetActive(true);
     }
 }
