@@ -32,7 +32,6 @@ public class BDConnection : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Login("esteban1113001@gmail.com", "test");
     }
 
     public RequestHelper GetRequestHelper(string Path, object pBody)
