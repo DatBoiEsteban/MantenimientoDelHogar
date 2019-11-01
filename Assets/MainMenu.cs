@@ -6,20 +6,20 @@ using UnityEngine.UI;
 using static BDConnection;
 public class MainMenu : MonoBehaviour
 {
-    public string UsuarioInputField = "";
-    public string ContraInputField = "";
+    public string Usuario = "";
+    public string Contra= "";
 
-    public GameObject username;
-    public GameObject password;
+    public GameObject UsuarioInputField;
+    public GameObject ContraInputField;
 
 
     public void PlayGame() 
     {
-        UsuarioInputField = username.GetComponent<InputField>().text;        
-        ContraInputField = password.GetComponent<InputField>().text; 
-        if (UsuarioInputField !="" && ContraInputField != "")
+        Usuario = UsuarioInputField.GetComponent<InputField>().text;        
+        Contra = ContraInputField.GetComponent<InputField>().text; 
+        if (Usuario !="" && Contra != "")
         {
-            BDConnection.Instance.Login(UsuarioInputField, ContraInputField);
+            BDConnection.Instance.Login(Usuario, Contra);
         }
              
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

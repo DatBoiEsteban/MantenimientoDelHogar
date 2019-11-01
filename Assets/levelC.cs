@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-//using static BDConnection;
+using static BDConnection;
 
 public class levelC : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class levelC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         if (!isConnected && BDConnection.Instance.session != null) {
             isConnected = true;
 
