@@ -6,11 +6,12 @@ public class PickUp : MonoBehaviour
 {
     public float range;
     public bool hasObject;
-    private Transform prevParent;
-    public Collider pickable;
-    private Collider picked;
-    public Collider Objective;
-    public Collider Activable;
+    private GameObject prevParent;
+    public GameObject pickable;
+    private GameObject picked;
+    public GameObject Objective;
+    public GameObject Activable;
+    private Vector3 prevSize;
 
     private void Start()
     {
@@ -26,14 +27,14 @@ public class PickUp : MonoBehaviour
             if (other.tag == "Pickable")
             {
                 if (other.gameObject.layer == 10){
-                    Objective = other;
+                    Objective = other.gameObject;
                 } else {
-                    pickable = other;
+                    pickable = other.gameObject;
                 }
                 
             } else if (other.tag == "Activable")
             {
-                Activable = other;
+                Activable = other.gameObject;
             }
         } 
     }
@@ -50,29 +51,30 @@ public class PickUp : MonoBehaviour
         {
             if (Activable != null)
             {
-                Activable.gameObject.GetComponent<Activable>().doAction(Activable);
+                Activable.gameObject.GetComponent<Activable>().doAction(Activable.GetComponent<Collider>());
             }
             if (pickable != null || picked != null)
             {
                 if (!hasObject && pickable.GetComponent<pickable>().canPickUp)
                 {
                     hasObject = true;
-                    prevParent = pickable.transform.parent;
-                    pickable.transform.SetParent(transform);
-                    picked = pickable;
-                    pickable.attachedRigidbody.useGravity = false;
+                    prevParent = pickable.transform.parent.gameObject;
+                    prevSize = pickable.transform.localScale;
+                    pickable.transform.parent = transform.parent.transform;
+                    pickable.GetComponent<Rigidbody>().useGravity = false;
                     pickable.gameObject.GetComponent<BoxCollider>().enabled = false;
-                
+                    picked = pickable;
                 }
                 else
                 {
                     if (Objective == null) {
                         hasObject = false;
-                        picked.gameObject.GetComponent<BoxCollider>().enabled = true;
-                        picked.attachedRigidbody.useGravity = true;
-                        picked.transform.SetParent(prevParent);
+                        picked.GetComponent<BoxCollider>().enabled = true;
+                        picked.GetComponent<Rigidbody>().useGravity = true;
+                        picked.gameObject.transform.parent = prevParent.transform;
+                        picked.transform.localScale = prevSize;
                         picked = null;
-                    } else if (Objective.GetComponent<placeable>().canPlace) {
+                    } else if (Objective.GetComponent<placeable>().canPlace && Objective.GetComponent<EnumType>().type == picked.GetComponent<EnumType>().type) {
                         Objective.gameObject.layer = 0;
                         Destroy(picked.gameObject);
                         hasObject = false;
