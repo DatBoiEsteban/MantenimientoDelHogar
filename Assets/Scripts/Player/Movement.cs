@@ -17,8 +17,6 @@ public class Movement : MonoBehaviour
     {
         if(Input.GetMouseButton(0))
         {
-
-            //agent.SetDestination(cam.CurrentRaycastResult.worldPosition);
             agent.SetDestination(cam.PointerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f)).direction + agent.transform.position);
         }
     }

@@ -60,7 +60,7 @@ public class PickUp : MonoBehaviour
                     hasObject = true;
                     prevParent = pickable.transform.parent.gameObject;
                     prevSize = pickable.transform.localScale;
-                    pickable.transform.parent = transform;
+                    pickable.transform.parent = transform.parent.transform;
                     pickable.GetComponent<Rigidbody>().useGravity = false;
                     pickable.gameObject.GetComponent<BoxCollider>().enabled = false;
                     picked = pickable;
@@ -74,7 +74,7 @@ public class PickUp : MonoBehaviour
                         picked.gameObject.transform.parent = prevParent.transform;
                         picked.transform.localScale = prevSize;
                         picked = null;
-                    } else if (Objective.GetComponent<placeable>().canPlace) {
+                    } else if (Objective.GetComponent<placeable>().canPlace && Objective.GetComponent<EnumType>().type == picked.GetComponent<EnumType>().type) {
                         Objective.gameObject.layer = 0;
                         Destroy(picked.gameObject);
                         hasObject = false;
