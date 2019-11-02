@@ -11,7 +11,7 @@ public class BDConnection : MonoBehaviour
 {
     public static BDConnection Instance { get; private set; }
     private const string API_URL = "https://brain-boost-backend.herokuapp.com/api";
-    private Session session;
+    public Session session = null;
 
     private void LogMessage(string title, string message)
     {
