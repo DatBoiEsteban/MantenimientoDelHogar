@@ -1,33 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using static BDConnection;
+//using static BDConnection;
+using NetModels;
 
 public class levelC : MonoBehaviour
 {
     // Start is called before the first frame update
-    //private int levelToLoad;
+    private int levelToLoad;
     public Animator animator;
-    private bool isConnected;
+    
     
     // Update is called once per frame
-    void Update()
-    {
-        
-        if (!isConnected && BDConnection.Instance.session != null) {
-            isConnected = true;
-
-            FadeToLevel(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
-    //función para agarrar los datos de los dos textbox y llamar a la conexión 
+ //función para agarrar los datos de los dos textbox y llamar a la conexión 
     //BDConnection.Instance
     public void FadeToLevel (int index){
-        
+        levelToLoad = index;
         animator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        SceneManager.LoadScene(levelToLoad);
     }
 }
