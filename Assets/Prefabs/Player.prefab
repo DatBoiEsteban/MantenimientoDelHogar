@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 6351945631114460922}
   - component: {fileID: 7613941302041389175}
   - component: {fileID: 4725366305235260635}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Picker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,6 +353,10 @@ PrefabInstance:
     - target: {fileID: 761381335, guid: 463285ecd6702471a909ba810832bf0e, type: 3}
       propertyPath: m_Name
       value: GvrEventSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 761381335, guid: 463285ecd6702471a909ba810832bf0e, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 766346198, guid: 463285ecd6702471a909ba810832bf0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -465,6 +469,10 @@ PrefabInstance:
       propertyPath: overridePointerCamera
       value: 
       objectReference: {fileID: 5536558756852823192}
+    - target: {fileID: 723926960, guid: 60270cf52a5e94998a5a335989159738, type: 3}
+      propertyPath: raycastMode
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60270cf52a5e94998a5a335989159738, type: 3}
 --- !u!1 &5536558756771792613 stripped

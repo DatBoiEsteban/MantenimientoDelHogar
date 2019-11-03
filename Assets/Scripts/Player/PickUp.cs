@@ -45,45 +45,43 @@ public class PickUp : MonoBehaviour
         Activable = null;
     }
 
-    private void Update()
+    public void doAction()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Activable != null)
         {
-            if (Activable != null)
-            {
-                Activable.gameObject.GetComponent<Activable>().doAction(Activable.GetComponent<Collider>());
-            }
-            if (pickable != null || picked != null)
-            {
-                if (!hasObject && pickable.GetComponent<pickable>().canPickUp)
-                {
-                    hasObject = true;
-                    prevParent = pickable.transform.parent.gameObject;
-                    prevSize = pickable.transform.localScale;
-                    pickable.transform.parent = transform.parent.transform;
-                    pickable.GetComponent<Rigidbody>().useGravity = false;
-                    pickable.gameObject.GetComponent<BoxCollider>().enabled = false;
-                    picked = pickable;
-                }
-                else
-                {
-                    if (Objective == null) {
-                        hasObject = false;
-                        picked.GetComponent<BoxCollider>().enabled = true;
-                        picked.GetComponent<Rigidbody>().useGravity = true;
-                        picked.gameObject.transform.parent = prevParent.transform;
-                        picked.transform.localScale = prevSize;
-                        picked = null;
-                    } else if (Objective.GetComponent<placeable>().canPlace && Objective.GetComponent<EnumType>().type == picked.GetComponent<EnumType>().type) {
-                        Objective.gameObject.layer = 0;
-                        Destroy(picked.gameObject);
-                        hasObject = false;
-                        picked = null;
-                    }
-                }
-            }
-
+            Activable.gameObject.GetComponent<Activable>().doAction(Activable.GetComponent<Collider>());
         }
-        
+        if (pickable != null || picked != null)
+        {
+            if (!hasObject && pickable.GetComponent<pickable>().canPickUp)
+            {
+                hasObject = true;
+                prevParent = pickable.transform.parent.gameObject;
+                prevSize = pickable.transform.localScale;
+                pickable.transform.parent = transform.parent.transform;
+                pickable.GetComponent<Rigidbody>().useGravity = false;
+                pickable.gameObject.GetComponent<BoxCollider>().enabled = false;
+                picked = pickable;
+            }
+            else
+            {
+                if (Objective == null)
+                {
+                    hasObject = false;
+                    picked.GetComponent<BoxCollider>().enabled = true;
+                    picked.GetComponent<Rigidbody>().useGravity = true;
+                    picked.gameObject.transform.parent = prevParent.transform;
+                    picked.transform.localScale = prevSize;
+                    picked = null;
+                }
+                else if (Objective.GetComponent<placeable>().canPlace && Objective.GetComponent<EnumType>().type == picked.GetComponent<EnumType>().type)
+                {
+                    Objective.gameObject.layer = 0;
+                    Destroy(picked.gameObject);
+                    hasObject = false;
+                    picked = null;
+                }
+            }
+        }
     }
 }
