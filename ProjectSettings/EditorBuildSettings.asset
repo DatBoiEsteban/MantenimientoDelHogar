@@ -12,9 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/GameSelection.unity
     guid: 4bfde547e98e09b45b6fc7090b8b647b
   - enabled: 1
+    path: Assets/Scenes/InnerSelectionHogar.unity
+    guid: 858eb1fd29ebe6e48bb9406f7d37b579
+  - enabled: 1
+    path: Assets/Scenes/InnerSelectionRopa.unity
+    guid: 02ed732b16ba54f4d9192ad5a976842c
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
   - enabled: 0
     path: Assets/Scenes/escenaFlorero.unity
     guid: bdb90e3745d374763afd5be58976d755
+  - enabled: 1
+    path: Assets/Scenes/Congrats.unity
+    guid: edceb14d01f500741b1399a9c5a63a8e
   m_configObjects: {}
