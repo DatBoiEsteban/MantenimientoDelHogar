@@ -10,14 +10,14 @@ public class levelC : MonoBehaviour
     public Animator animator;
     
     
-    // Update is called once per frame
- //función para agarrar los datos de los dos textbox y llamar a la conexión 
+
+    //función para agarrar los datos de los dos textbox y llamar a la conexión 
     //BDConnection.Instance
     public void FadeToLevel (int index){
         levelToLoad = index;
         animator.SetTrigger("FadeOut");
     }
-
+   
     public void OnFadeComplete()
     {
         SceneManager.LoadScene(levelToLoad);

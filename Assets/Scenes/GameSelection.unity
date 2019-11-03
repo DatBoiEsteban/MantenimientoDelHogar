@@ -129,6 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 81814920}
+  - component: {fileID: 81814921}
   m_Layer: 0
   m_Name: SelectionScreen
   m_TagString: Untagged
@@ -151,6 +152,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &81814921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81814919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab2dfc408d2a3446bee80911b5bed0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transicion: {fileID: 471161032}
 --- !u!1 &110633331
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,8 +304,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.19100001}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 329.49994, y: -308.56}
-  m_SizeDelta: {x: 663, y: 101.5}
+  m_AnchoredPosition: {x: 345.8, y: -303.8}
+  m_SizeDelta: {x: 695.5, y: 98.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &367140470
 MonoBehaviour:
@@ -335,7 +349,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 367140471}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 81814921}
+        m_MethodName: MenuRopa
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &367140471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +486,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9ec12b583bb45b0b4dcc0c717b6c3f, type: 3}
+--- !u!114 &471161032 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3166366204429000170, guid: cc9ec12b583bb45b0b4dcc0c717b6c3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 471161031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa2a388ce46f6548861f15243bbe9bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &581009467
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,8 +625,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -332, y: -309}
-  m_SizeDelta: {x: 663, y: 100.61}
+  m_AnchoredPosition: {x: -347, y: -304.4}
+  m_SizeDelta: {x: 693, y: 99.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &770572302
 MonoBehaviour:
@@ -633,7 +670,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 770572303}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 81814921}
+        m_MethodName: MenuMantenimiento
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &770572303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,8 +1051,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -331.34998, y: 49.599976}
-  m_SizeDelta: {x: -662.7, y: -99.2}
+  m_AnchoredPosition: {x: -347.71997, y: 49.599976}
+  m_SizeDelta: {x: -695.46, y: -99.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1947622904
 MonoBehaviour:
@@ -1153,8 +1201,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 331, y: 49.600006}
-  m_SizeDelta: {x: -660.6, y: -99.2}
+  m_AnchoredPosition: {x: 346.85, y: 49.600006}
+  m_SizeDelta: {x: -692.29, y: -99.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2066978398
 MonoBehaviour:
