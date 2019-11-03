@@ -15,7 +15,7 @@ public class CameraControl : MonoBehaviour
         Input.gyro.enabled = true;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (XRSettings.enabled)
         {
@@ -42,20 +42,13 @@ public class CameraControl : MonoBehaviour
         //
 
         // Update `dragYawDegrees` based on user touch.
-        CheckDrag();
+        //CheckDrag();
 
-        transform.localRotation =
-          // Allow user to drag left/right to adjust direction they're facing.
-          Quaternion.Euler(0f, -dragYawDegrees, 0f) *
-
-          // Neutral position is phone held upright, not flat on a table.
-          Quaternion.Euler(90f, 0f, 0f) *
-
-          // Sensor reading, assuming default `Input.compensateSensors == true`.
-          Input.gyro.attitude *
-
-          // So image is not upside down.
-          Quaternion.Euler(0f, 0f, 180f);
+        transform.rotation = Input.gyro.attitude;
+        if(Input.touchCount == 3)
+        {
+            transform.Rotate(new Vector3(transform.localRotation.x, 0 , transform.localRotation.z));
+        }
     }
 
     void CheckDrag()
