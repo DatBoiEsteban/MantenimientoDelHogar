@@ -49,21 +49,29 @@ public class BDConnection : MonoBehaviour
     public void Login(string pUsername, string pPassword)
     {
         Match match = Regex.Match(pUsername, "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        int usernameType = 0;
+        Match match2 = Regex.Match(pUsername, "^[0-9]{9,9}");
+        int usernameType = -1;
+
         if (match.Success)
         {
             usernameType = 1;
         }
-        RequestHelper options = GetRequestHelper("/app_user/auth", new Login { password = pPassword, username = pUsername, username_type = usernameType });
-        RestClient.Post(options)
-            .Then(res =>
-            {
-                ResponseMessage<Session> b = JsonUtility.FromJson<ResponseMessage<Session>>(res.Text);
-                if (b.response.status != "404")
+        else if (match2.Success)
+        {
+            usernameType = 0;
+        }
+        if (usernameType != -1)
+        {
+            RequestHelper options = GetRequestHelper("/app_user/auth", new Login { password = pPassword, username = pUsername, username_type = usernameType });
+            RestClient.Post(options)
+                .Then(res =>
                 {
-                    session = b.response;
-                }
-            })
-            .Catch(err => session = null);
+                    ResponseMessage<Session> Answer = JsonUtility.FromJson<ResponseMessage<Session>>(res.Text);
+                    session = Answer.response;
+
+                })
+                .Catch(err => session = null);
+        }
+        
     }
 }

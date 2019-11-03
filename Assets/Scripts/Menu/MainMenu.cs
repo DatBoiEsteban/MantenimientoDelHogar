@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
 
     public GameObject UsuarioInputField;
     public GameObject ContraInputField;
-    public GameObject errorText;
+    public GameObject BDErrorMessage;
     private bool isConnected;    
     public levelC transicion;
     public Animator animator;
@@ -22,11 +22,13 @@ public class MainMenu : MonoBehaviour
         {
             isConnected = true;
             transicion.FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
-        }/*
-        else if (BDConnection.Instance.session.status == "404" && errorText.GetComponent<Text>().text != BDConnection.Instance.session.message)
+        }
+        else if (BDConnection.Instance.session.status == "404" && BDErrorMessage.GetComponent<Text>().text != BDConnection.Instance.session.message)
         {
-            errorText.GetComponent<Text>().text = BDConnection.Instance.session.message;
-        }*/
+            BDErrorMessage.GetComponent<Text>().text = BDConnection.Instance.session.message;
+            animator.SetTrigger("BDError");
+        }
+        Debug.Log(BDConnection.Instance.session.status);
     }
     public void PlayGame() 
     {
@@ -34,14 +36,16 @@ public class MainMenu : MonoBehaviour
         Contra = ContraInputField.GetComponent<InputField>().text;
         
 
-        animator.SetTrigger("removePassword");
+        animator.SetTrigger("removePassword");       
         animator.SetTrigger("removeUser");
         animator.SetTrigger("removeBoth");
+        animator.SetTrigger("removeBDErrorMessage");
         animator.SetTrigger("ToInitial");
 
         if (Usuario !="" && Contra != "")
         {   
-            BDConnection.Instance.Login(Usuario, Contra);            
+            BDConnection.Instance.Login(Usuario, Contra);                                       
+            
         }
         else if (Usuario=="" && Contra != "")
         {
