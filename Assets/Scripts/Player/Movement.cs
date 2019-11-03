@@ -45,11 +45,12 @@ public class Movement : MonoBehaviour
                 {
                     Debug.Log("Double Tap");
                     result = 2;
-                } else if (Input.GetTouch(i).tapCount == 1)
-                {
-                    Debug.Log("Single Tap");
-                    result = 1;
                 }
+            }
+            if (Input.GetTouch(i).tapCount == 1)
+            {
+                Debug.Log("Single Tap");
+                result = 1;
             }
         }
         return result;
