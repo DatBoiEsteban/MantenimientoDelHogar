@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour
     {
         Usuario = UsuarioInputField.GetComponent<InputField>().text;        
         Contra = ContraInputField.GetComponent<InputField>().text;
-        Debug.Log(UsuarioInputField.GetComponent<InputField>().text = "");
+        
 
         animator.SetTrigger("removePassword");
         animator.SetTrigger("removeUser");
@@ -50,12 +50,11 @@ public class MainMenu : MonoBehaviour
         else if(Usuario != "" && Contra == "")
         {
             animator.SetTrigger("passwordTrigger");
-            Debug.Log("Me cago en Segura");
+            //Debug.Log("Me cago en Segura");
         }
         else if (Usuario == "" && Contra == "")
         {
-            //animator.SetTrigger("userTrigger");
-            //animator.SetTrigger("passwordTrigger");
+
             animator.SetTrigger("UserPasswordTrigger");
         }
         UsuarioInputField.GetComponent<InputField>().text = "";
