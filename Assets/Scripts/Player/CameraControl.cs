@@ -6,12 +6,13 @@ using UnityEngine.XR;
 public class CameraControl : MonoBehaviour
 {
     // Optional, allows user to drag left/right to rotate the world.
-    private const float DRAG_RATE = .2f;
+    private const float DRAG_RATE = -.05f;
     float dragYawDegrees;
 
     void Start()
     {
         // Make sure orientation sensor is enabled.
+        //Input.simulateMouseWithTouches = false;
         Input.gyro.enabled = true;
     }
 
@@ -42,13 +43,20 @@ public class CameraControl : MonoBehaviour
         //
 
         // Update `dragYawDegrees` based on user touch.
-        //CheckDrag();
+        CheckDrag();
 
-        transform.rotation = Input.gyro.attitude;
-        if(Input.touchCount == 3)
-        {
-            transform.Rotate(new Vector3(transform.localRotation.x, 0 , transform.localRotation.z));
-        }
+        transform.rotation =
+            // Allow user to drag left/right to adjust direction they're facing.
+            Quaternion.Euler(0f, -dragYawDegrees, 0f) *
+
+            // Neutral position is phone held upright, not flat on a table.
+            Quaternion.Euler(90f, 0f, 0f) *
+
+            // Sensor reading, assuming default `Input.compensateSensors == true`.
+            Input.gyro.attitude *
+
+            // So image is not upside down.
+            Quaternion.Euler(0f, 0f, 180f);
     }
 
     void CheckDrag()
