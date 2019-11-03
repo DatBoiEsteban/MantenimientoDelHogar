@@ -19,13 +19,21 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        int taps = Taps();
-        if (Input.GetMouseButton(0) || taps == 1)
+        for (var i = 0; i < Input.touchCount; ++i)
         {
-            doAction();
-        } else if (Input.GetMouseButtonDown(1) || taps == 2)
-        {
-            pickup.doAction();
+            if (Input.GetTouch(i).phase == TouchPhase.Began)
+            {
+                if (Input.GetTouch(i).tapCount == 2)
+                {
+                    Debug.Log("Double tap..");
+                    pickup.doAction();
+                }
+                if (Input.GetTouch(i).tapCount == 1)
+                {
+                    Debug.Log("Single tap..");
+                    doAction();
+                }
+            }
         }
     }
 
@@ -34,25 +42,4 @@ public class Movement : MonoBehaviour
         agent.SetDestination(cam.PointerCamera.ViewportPointToRay(new Vector3(.5f, .5f)).direction + agent.transform.position);
     }
 
-    public int Taps()
-    {
-        int result = 0;
-        for (var i = 0; i < Input.touchCount; ++i)
-        {
-            if (Input.GetTouch(i).phase == TouchPhase.Began)
-            {
-                if (Input.GetTouch(i).tapCount == 2)
-                {
-                    Debug.Log("Double Tap");
-                    result = 2;
-                }
-            }
-            if (Input.GetTouch(i).tapCount == 1)
-            {
-                Debug.Log("Single Tap");
-                result = 1;
-            }
-        }
-        return result;
-    }
 }
