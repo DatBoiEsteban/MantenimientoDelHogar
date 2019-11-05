@@ -13,15 +13,6 @@ public class BDConnection : MonoBehaviour
     private const string API_URL = "https://brain-boost-backend.herokuapp.com/api";
     public Session session = null;
 
-    private void LogMessage(string title, string message)
-    {
-#if UNITY_EDITOR
-        EditorUtility.DisplayDialog(title, message, "Ok");
-#else
-		Debug.Log(message);
-#endif
-    }
-
     private void Awake()
     {
         if(Instance == null)
