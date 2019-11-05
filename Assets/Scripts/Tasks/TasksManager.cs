@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TasksManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class TasksManager : MonoBehaviour
         });
         setCurrentActive();
         CreateTasks();
+        Timer.Instance.startTimer();
     }
 
     private void Update()
@@ -33,16 +35,21 @@ public class TasksManager : MonoBehaviour
                 toggles[index].GetComponent<Toggle>().isOn = true;
                 Objectives[index].GetComponent<placeable>().canPlace = false;
                 index += 1;
+                Timer.Instance.makeTimeStamp();
                 if (index < Objectives.Count)
                 {
                     setCurrentActive();
+                }
+                else
+                {
+                    Timer.Instance.pauseTimer();
                 }
                 
             }
         }
         else
         {
-            //TODO: terminar partida
+            SceneManager.LoadScene(5);
         }
     }
 
