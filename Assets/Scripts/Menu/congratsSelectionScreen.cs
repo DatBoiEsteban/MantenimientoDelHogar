@@ -10,7 +10,7 @@ public class congratsSelectionScreen : MonoBehaviour
 
     private void Start()
     {
-        timeText.GetComponent<Text>().text += Timer.Instance.formatTotal();
+        timeText.GetComponent<Text>().text = "Tiempo: "+ Timer.Instance.formatTotal();
     }
 
     public void goToSelecion()

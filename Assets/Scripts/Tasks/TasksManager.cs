@@ -13,6 +13,7 @@ public class TasksManager : MonoBehaviour
     private int index = 0;
     public GameObject panel;
     public GameObject prefab;
+    public int stageId;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class TasksManager : MonoBehaviour
         setCurrentActive();
         CreateTasks();
         Timer.Instance.startTimer();
+        BDConnection.Instance.setStageId(stageId);
     }
 
     private void Update()
@@ -50,6 +52,7 @@ public class TasksManager : MonoBehaviour
         else
         {
             SceneManager.LoadScene(5);
+            BDConnection.Instance.SendTime();
         }
     }
 

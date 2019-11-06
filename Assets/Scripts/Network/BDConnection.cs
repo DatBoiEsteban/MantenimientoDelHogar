@@ -12,6 +12,7 @@ public class BDConnection : MonoBehaviour
     public static BDConnection Instance { get; private set; }
     private const string API_URL = "https://brain-boost-backend.herokuapp.com/api";
     public Session session = null;
+    private int stageId;
 
     private void Awake()
     {
@@ -64,5 +65,16 @@ public class BDConnection : MonoBehaviour
                 .Catch(err => session = null);
         }
         
+    }
+
+    public void setStageId(int id)
+    {
+        stageId = id;
+    }
+
+    public void SendTime()
+    {
+        RequestHelper options = GetRequestHelper("/scores/create", new Timestamps {idUser = session.user.user_id, idStage = stageId, times = Timer.Instance.getTimestamps() });
+        RestClient.Post(options);
     }
 }

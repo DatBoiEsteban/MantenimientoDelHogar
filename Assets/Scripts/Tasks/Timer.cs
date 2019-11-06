@@ -5,9 +5,9 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     public static Timer Instance { get; private set; }
-    private double time;
+    private float time;
     private float totalTime;
-    private List<double> timeStamps = new List<double>();
+    private List<float> timeStamps = new List<float>();
     private bool running;
 
     private void Awake()
@@ -48,7 +48,7 @@ public class Timer : MonoBehaviour
 
     public void makeTimeStamp()
     {
-        totalTime += (float)time;
+        totalTime += time;
         timeStamps.Add(time);
         resetTimer();
     }
@@ -69,5 +69,10 @@ public class Timer : MonoBehaviour
         string minutes = Mathf.Floor((totalTime % 3600) / 60).ToString("00");
         string seconds = (totalTime % 60).ToString("00");
         return hours + ":" + minutes + ":" + seconds + "." + (totalTime - (int)totalTime);
+    }
+
+    public float[] getTimestamps()
+    {
+        return timeStamps.ToArray();
     }
 }
