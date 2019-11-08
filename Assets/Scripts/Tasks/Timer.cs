@@ -5,8 +5,8 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     public static Timer Instance { get; private set; }
-    private float time;
-    private float totalTime;
+    private float time = 0;
+    private float totalTime = 0;
     private List<float> timeStamps = new List<float>();
     private bool running;
 
@@ -67,8 +67,8 @@ public class Timer : MonoBehaviour
     {
         string hours = Mathf.Floor((totalTime % 216000) / 3600).ToString("00");
         string minutes = Mathf.Floor((totalTime % 3600) / 60).ToString("00");
-        string seconds = (totalTime % 60).ToString("00");
-        return hours + ":" + minutes + ":" + seconds + "." + (totalTime - (int)totalTime);
+        string seconds = (totalTime % 60).ToString();
+        return hours + ":" + minutes + ":" + seconds;
     }
 
     public float[] getTimestamps()
